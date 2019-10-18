@@ -627,24 +627,23 @@
 
 <script>
 
-function showMessage(){
-          var transact=[];
-					 // var message = document.getElementById("string1").value;
-					 transact.push(document.getElementById("string1").value);
-					 transact.push(document.getElementById("string2").value);
-					 transact.push(document.getElementById("string3").value);
-					 transact.push(document.getElementById("string4").value);
-           tree=new MerkleTree(transact);
-           tree.createTree();
-           rootHash=tree.getRootHash();
-					 document.getElementById("display_RootHash").innerHTML=rootHash;
+function show_rootHash()
+{
+   elements_string=document.getElementById("elements").value
+   elements_array=elements_string.split(',')
+   tree=new MerkleTree(elements_array);
+   tree.createTree();
+   rootHash=tree.getRootHash();
+	 document.getElementById("display_RootHash").innerHTML=rootHash;
 
-			 }
-function show_Path(){
+}
+function show_Path()
+{
   path=tree.getHashPathToRoot(document.getElementById("element").value);
   document.getElementById("display_path").innerHTML=path;
 }
-function verify_element(){
+function verify_element()
+{
   path_string=document.getElementById("path").value;
   path=path_string.split(',')
   element=document.getElementById("element_to_be_verified").value
@@ -657,20 +656,11 @@ function verify_element(){
 
 <body>
 <form>
-    <p><b>Enter the strings for creating merkle tree</b></p>
-    <label for="string1">String 1:</label>
-    <input type="text" name="string1" id="string1">
+    <p><b>Enter the elements for creating merkle tree</b></p>
+    <label for="string1">Elements :</label>
+    <input type="text" name="Elements" id="elements">
     <br><br>
-		<label for="string2">String 2:</label>
-    <input type="text" name="string2" id="string2">
-    <br><br>
-		<label for="string3">String 3:</label>
-    <input type="text" name="string3" id="string3">
-    <br><br>
-		<label for="string4">String 4:</label>
-    <input type="text" name="string4" id="string4">
-    <br><br>
-		<input type="button" value="Submit" onclick="showMessage()">
+		<input type="button" value="Submit" onclick="show_rootHash()">
     <br><br><p><b>To get path of the element</b></p>
     <label for="path of element">Element:</label>
     <input type="text" name="element" id="element">
